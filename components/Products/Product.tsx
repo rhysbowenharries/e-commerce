@@ -1,26 +1,37 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Node } from "@/schema";
 
 type Props = {
-  directionLeft?: boolean;
+  node: Node;
 };
 
-export default function Product({ directionLeft }: Props) {
+export default function Product({ node }: Props) {
+  const { name } = node;
+
+  const urlWithFallback = node.thumbnail?.url
+    ? node.thumbnail.url
+    : "images/logo.jpeg";
+
   return (
-    <div className="group relative flex cursor-pointer">
-      <motion.img
+    <div className="group relative flex flex-col cursor-pointer">
+      <motion.div
         initial={{
-          x: directionLeft ? -200 : 200,
           opacity: 0,
         }}
         transition={{ duration: 1 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        src="images/javascript.png"
-        className="rounded-full border border-gray-500 object-cover w-24 h-24 xl:w-32 xl:h-32 filter group-hover:grayscale transition md:w-28 duration-300 ease-in-out"
-      />
-      <div className="absolute opacity-0 group-hover:opacity-80 transition duration-300 ease-in-out group-hover:bg-white h-24 w-24 md:w-28 md:h-28 xl:w-32 xl:h-32 rounded-full z-0">
+        whileInView={{ opacity: 1 }}
+      >
+        <img
+          src={urlWithFallback}
+          className="rounded-full object-cover w-44 h-44 filter group-hover:grayscale transition duration-300 ease-in-out"
+        />
+      </motion.div>
+      <div className="absolute opacity-0 group-hover:opacity-80 transition duration-300 ease-in-out group-hover:bg-white w-44 h-44 rounded-lg z-0">
         <div className="flex items-center justify-center h-full">
-          <p className="text-3xl font-bold text-black opacity-100">100%</p>
+          <p className="text-2xl font-bold text-black opacity-100 p-3">
+            {name}
+          </p>
         </div>
       </div>
     </div>

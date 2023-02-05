@@ -4,10 +4,13 @@ import Hero from "@/components/Hero";
 import About from "@/components/About";
 import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
 import Products from "@/components/Products/Products";
+import { ProductsType } from "@/schema";
 
-// @ts-ignore
-export default function Home({ products }) {
-  console.log("products", products);
+type Props = {
+  products: ProductsType;
+};
+
+export default function Home({ products }: Props) {
   return (
     <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y snap-mandatory overflow-scroll z-0">
       <Head>
@@ -20,7 +23,6 @@ export default function Home({ products }) {
       </section>
       <section id="about" className="snap-center">
         <About />
-        clear
       </section>
       <section id="products" className="snap-start">
         <Products products={products} />
@@ -38,13 +40,7 @@ export async function getStaticProps() {
   const { data, error, loading } = await client.query({
     query: gql`
       query products {
-        products(first: 10, channel: "uk") {
-          pageInfo {
-            hasNextPage
-            hasPreviousPage
-            startCursor
-            endCursor
-          }
+        products(first: 40, channel: "uk") {
           edges {
             node {
               id
@@ -69,12 +65,6 @@ export async function getStaticProps() {
                   }
                 }
                 priceRange {
-                  start {
-                    gross {
-                      amount
-                      currency
-                    }
-                  }
                   stop {
                     gross {
                       amount
@@ -87,7 +77,6 @@ export async function getStaticProps() {
                 id
                 sortOrder
                 alt
-                type
                 url(size: 1)
               }
             }
@@ -97,11 +86,8 @@ export async function getStaticProps() {
       }
     `,
   });
-  console.log("data", data);
 
   return {
-    props: {
-      products: data,
-    },
+    props: data,
   };
 }
