@@ -5,7 +5,7 @@ import BackgroundCircles from "./BackgroundCircles";
 type Props = {};
 
 export default function Hero({}: Props) {
-  const [text, count] = useTypewriter({
+  const [text] = useTypewriter({
     words: ["Live out of your imagination", "Not your history"],
     loop: true,
     delaySpeed: 2000,
@@ -23,7 +23,7 @@ export default function Hero({}: Props) {
         <h2 className="text-xl uppercase text-gray-500 pb-2 tracking-[15px] ">
           Rainbow Flower
         </h2>
-        <h1 className="text-5xl lg:6xl font-semibold px-10">
+        <h1 className="text-5xl lg:6xl font-semibold px-10 hidden sm:flex">
           <span>{text}</span>
           <Cursor cursorColor="#F7AB0A" />
         </h1>
