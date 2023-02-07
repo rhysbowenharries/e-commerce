@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Product from "./Product";
-import { ProductsType } from "@/schema";
+import { Node, NodeObject, ProductsType } from "@/schema";
+import ProductDetailModal from "./ProductDetailModal";
 
 type Props = {
   products: ProductsType;
 };
 
 export default function Products({ products }: Props) {
-  console.log("products", products);
+  const [showModal, setShowModal] = useState(false);
+  const [modalNode, setModalNode] = useState({});
+
   const nodes = products.edges.map(({ node }) => {
     return node;
   });
-  console.log("nodes", nodes);
+
+  const handleClick = (node: Node) => {
+    setModalNode(node);
+    setShowModal(true);
+  };
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -31,10 +38,18 @@ export default function Products({ products }: Props) {
       <div className="absolute top-44 h-[80%] overflow-x-scroll">
         <div className="grid md:grid-cols-4 gap-5 sm:grid-cols-2 ">
           {nodes.map((node, index) => {
-            return <Product node={node} />;
+            return (
+              <Product node={node} handleClick={() => handleClick(node)} />
+            );
           })}
         </div>
       </div>
+      {showModal && (
+        <ProductDetailModal
+          handleClick={() => setShowModal(false)}
+          node={modalNode}
+        />
+      )}
     </motion.div>
   );
 }

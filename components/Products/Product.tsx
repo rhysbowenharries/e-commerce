@@ -4,9 +4,10 @@ import { Node } from "@/schema";
 
 type Props = {
   node: Node;
+  handleClick: () => void;
 };
 
-export default function Product({ node }: Props) {
+export default function Product({ node, handleClick }: Props) {
   const { name } = node;
 
   const urlWithFallback = node.thumbnail?.url
@@ -14,7 +15,12 @@ export default function Product({ node }: Props) {
     : "images/logo.jpeg";
 
   return (
-    <div className="group relative flex flex-col cursor-pointer">
+    <button
+      className="group relative flex flex-col cursor-pointer"
+      onClick={() => {
+        handleClick();
+      }}
+    >
       <motion.div
         initial={{
           opacity: 0,
@@ -34,6 +40,6 @@ export default function Product({ node }: Props) {
           </p>
         </div>
       </div>
-    </div>
+    </button>
   );
 }
