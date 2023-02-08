@@ -1,7 +1,8 @@
 export interface Node {
   id: String;
   name: String;
-  description: { k: string };
+  // TODO: Fix this!
+  description: { k: JSON };
   productType: { name: string; slug: string };
   slug: string;
   rating: number;
@@ -11,12 +12,12 @@ export interface Node {
     discount: {
       gross: { amount: number; currency: string };
     };
-  };
-  priceRange: {
-    stop: {
-      gross: {
-        amount: number;
-        currency: string;
+    priceRange: {
+      stop: {
+        gross: {
+          amount: number;
+          currency: string;
+        };
       };
     };
   };

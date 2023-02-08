@@ -3,15 +3,15 @@ import { motion } from "framer-motion";
 import { Node } from "@/schema";
 
 type Props = {
-  node: Node;
+  product: Node;
   handleClick: () => void;
 };
 
-export default function Product({ node, handleClick }: Props) {
-  const { name } = node;
+export default function Product({ product, handleClick }: Props) {
+  const { name } = product;
 
-  const urlWithFallback = node.thumbnail?.url
-    ? node.thumbnail.url
+  const urlWithFallback = product.thumbnail?.url
+    ? product.thumbnail.url
     : "images/logo.jpeg";
 
   return (

@@ -4,11 +4,11 @@ import React from "react";
 import ProductDard from "./ProductDard";
 
 type Props = {
-  node: Node | {};
+  product: Node;
   handleClick: () => void;
 };
 
-function ProductDetailModal({ handleClick, node }: Props) {
+function ProductDetailModal({ handleClick, product }: Props) {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
       <motion.div
@@ -30,7 +30,7 @@ function ProductDetailModal({ handleClick, node }: Props) {
           >
             x
           </button>
-          <ProductDard node={node} />
+          {product && <ProductDard product={product} />}
         </div>
       </motion.div>
     </div>

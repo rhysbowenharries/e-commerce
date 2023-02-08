@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Product from "./Product";
-import { Node, NodeObject, ProductsType } from "@/schema";
+import { Node, ProductsType } from "@/schema";
 import ProductDetailModal from "./ProductDetailModal";
+import isEmpty from "lodash/isEmpty";
 
 type Props = {
   products: ProductsType;
@@ -20,6 +21,7 @@ export default function Products({ products }: Props) {
     setModalNode(node);
     setShowModal(true);
   };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -36,20 +38,20 @@ export default function Products({ products }: Props) {
         </h3>
       </div>
       <div className="absolute top-44 h-[80%] overflow-x-scroll">
-        <div className="grid md:grid-cols-4 gap-5 sm:grid-cols-2 ">
-          {nodes.map((node, index) => {
+        <div className="grid md:grid-row-4 gap-5 sm:grid-cols-2 ">
+          {nodes.map((node) => {
             return (
-              <Product node={node} handleClick={() => handleClick(node)} />
+              <Product product={node} handleClick={() => handleClick(node)} />
             );
           })}
         </div>
       </div>
-      {showModal && (
+      {showModal && !isEmpty(modalNode) ? (
         <ProductDetailModal
           handleClick={() => setShowModal(false)}
-          node={modalNode}
+          product={modalNode as Node}
         />
-      )}
+      ) : null}
     </motion.div>
   );
 }

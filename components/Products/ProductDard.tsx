@@ -4,12 +4,12 @@ import { Node } from "@/schema";
 import { descriptionFormater } from "@/utils";
 
 type Props = {
-  node: Node | {};
+  product: Node;
 };
 
-export default function ProductDard({ node }: Props) {
-  const { description, name, pricing, thumbnail } = node;
-  const imageURL = thumbnail.url || "images/logo.jpeg";
+export default function ProductDard({ product }: Props) {
+  const { description, name, pricing, thumbnail } = product;
+  const imageURL = thumbnail?.url || "images/logo.jpeg";
   const price = pricing.priceRange.stop.gross.amount;
   const formatedDesctiption = descriptionFormater(description);
 
