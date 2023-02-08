@@ -12,19 +12,19 @@ type Props = {
 
 export default function Home({ products }: Props) {
   return (
-    <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y snap-mandatory overflow-scroll z-0">
+    <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y overflow-scroll z-0 snap-proximity">
       <Head>
         <title>Rainbow Flower</title>
       </Head>
 
       <Header />
-      <section id="hero" className="snap-start">
+      <section id="hero" className="snap-start snap-always">
         <Hero />
       </section>
-      <section id="about" className="snap-center">
+      <section id="about" className="snap-center snap-always">
         <About />
       </section>
-      <section id="products" className="snap-start">
+      <section id="products" className="snap-start snap-normal">
         <Products products={products} />
       </section>
     </div>

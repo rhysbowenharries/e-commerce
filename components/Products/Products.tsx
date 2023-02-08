@@ -27,6 +27,7 @@ export default function Products({ products }: Props) {
       initial={{ opacity: 0 }}
       transition={{ duration: 1 }}
       whileInView={{ opacity: 1.5 }}
+      viewport={{ once: true }}
       className=" flex relative flex-col text-center md:text-left xl:flex-row max-w-[2000px] xl:px-10 min-h-screen justify-center xl:space-y-0 mx-auto items-center"
     >
       <div className="absolute top-24	">
@@ -37,8 +38,8 @@ export default function Products({ products }: Props) {
           Hover over thumbnail for title
         </h3>
       </div>
-      <div className="absolute top-44 h-[80%] overflow-x-scroll">
-        <div className="grid md:grid-row-4 gap-5 sm:grid-cols-2 ">
+      <div className="absolute top-44">
+        <div className="grid md:grid-cols-4 gap-5 sm:grid-cols-2 ">
           {nodes.map((node) => {
             return (
               <Product product={node} handleClick={() => handleClick(node)} />
