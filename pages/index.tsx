@@ -17,13 +17,15 @@ export default function Home({ products }: Props) {
         <title>Rainbow Flower</title>
       </Head>
 
-      <Header />
-      <section id="hero" className="snap-start snap-always">
-        <Hero />
-      </section>
-      <section id="about" className="snap-center snap-always">
-        <About />
-      </section>
+      <div id="sticky header container">
+        <Header />
+        <section id="hero" className="snap-start snap-always">
+          <Hero />
+        </section>
+        <section id="about" className="snap-center snap-always">
+          <About />
+        </section>
+      </div>
       <section id="products" className="snap-start snap-normal">
         <Products products={products} />
       </section>
