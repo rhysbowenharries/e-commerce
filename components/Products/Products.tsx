@@ -42,7 +42,11 @@ export default function Products({ products }: Props) {
         <div className="grid md:grid-cols-4 gap-5 sm:grid-cols-2 ">
           {nodes.map((node) => {
             return (
-              <Product product={node} handleClick={() => handleClick(node)} />
+              <Product
+                key={node.id}
+                product={node}
+                handleClick={() => handleClick(node)}
+              />
             );
           })}
         </div>

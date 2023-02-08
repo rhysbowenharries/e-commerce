@@ -1,6 +1,6 @@
 export interface Node {
-  id: String;
-  name: String;
+  id: string;
+  name: string;
   // TODO: Fix this!
   description: { k: JSON };
   productType: { name: string; slug: string };
