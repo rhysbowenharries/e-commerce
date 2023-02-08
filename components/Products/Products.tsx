@@ -7,12 +7,14 @@ import isEmpty from "lodash/isEmpty";
 
 type Props = {
   products: ProductsType;
+  loading: boolean;
 };
 
-export default function Products({ products }: Props) {
+export default function Products({ products, loading }: Props) {
   const [showModal, setShowModal] = useState(false);
   const [modalNode, setModalNode] = useState({});
 
+  const fakeLoad = true;
   const nodes = products.edges.map(({ node }) => {
     return node;
   });
@@ -39,17 +41,21 @@ export default function Products({ products }: Props) {
         </h3>
       </div>
       <div className="absolute top-44">
-        <div className="grid md:grid-cols-4 gap-5 sm:grid-cols-2 ">
-          {nodes.map((node) => {
-            return (
-              <Product
-                key={node.id}
-                product={node}
-                handleClick={() => handleClick(node)}
-              />
-            );
-          })}
-        </div>
+        {loading ? (
+          <h1>Loading ...</h1>
+        ) : (
+          <div className="grid md:grid-cols-4 gap-5 sm:grid-cols-2 ">
+            {nodes.map((node) => {
+              return (
+                <Product
+                  key={node.id}
+                  product={node}
+                  handleClick={() => handleClick(node)}
+                />
+              );
+            })}
+          </div>
+        )}
       </div>
       {showModal && !isEmpty(modalNode) ? (
         <ProductDetailModal

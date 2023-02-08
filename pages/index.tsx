@@ -7,10 +7,12 @@ import Products from "@/components/Products/Products";
 import { ProductsType } from "@/schema";
 
 type Props = {
-  products: ProductsType;
+  data: { products: ProductsType };
+  loading: boolean;
 };
 
-export default function Home({ products }: Props) {
+export default function Home({ loading, data }: Props) {
+  console.log("props", data.products);
   return (
     <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y overflow-scroll z-0 snap-proximity">
       <Head>
@@ -27,7 +29,7 @@ export default function Home({ products }: Props) {
         </section>
       </div>
       <section id="products" className="snap-start snap-normal">
-        <Products products={products} />
+        <Products products={data.products} loading={loading} />
       </section>
     </div>
   );
@@ -90,6 +92,6 @@ export async function getStaticProps() {
   });
 
   return {
-    props: data,
+    props: { loading, data },
   };
 }
