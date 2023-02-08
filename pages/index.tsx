@@ -12,7 +12,6 @@ type Props = {
 };
 
 export default function Home({ loading, data }: Props) {
-  console.log("props", data.products);
   return (
     <div className="bg-[rgb(36,36,36)] text-white h-screen snap-y overflow-scroll z-0 snap-proximity">
       <Head>
@@ -52,22 +51,12 @@ export async function getStaticProps() {
               description
               productType {
                 name
-                slug
               }
-              slug
-              rating
               thumbnail {
                 url
                 alt
               }
               pricing {
-                onSale
-                discount {
-                  gross {
-                    amount
-                    currency
-                  }
-                }
                 priceRange {
                   stop {
                     gross {
@@ -77,20 +66,14 @@ export async function getStaticProps() {
                   }
                 }
               }
-              media {
-                id
-                sortOrder
-                alt
-                url(size: 1)
-              }
             }
           }
-          totalCount
         }
       }
     `,
   });
 
+  console.log("error", error);
   return {
     props: { loading, data },
   };

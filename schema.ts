@@ -4,14 +4,8 @@ export interface Node {
   // TODO: Fix this!
   description: { k: JSON };
   productType: { name: string; slug: string };
-  slug: string;
-  rating: number;
   thumbnail: { url: string; alt: string };
   pricing: {
-    onSale: boolean;
-    discount: {
-      gross: { amount: number; currency: string };
-    };
     priceRange: {
       stop: {
         gross: {
@@ -20,12 +14,6 @@ export interface Node {
         };
       };
     };
-  };
-  media: {
-    id: string;
-    sortOrder: number;
-    alt: string;
-    url: string;
   };
 }
 
