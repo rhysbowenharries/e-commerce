@@ -18,18 +18,27 @@ export default function Home({ loading, data }: Props) {
         <title>Rainbow Flower</title>
       </Head>
 
-      <div id="sticky header container">
-        <Header />
-        <section id="hero" className="snap-start snap-always">
-          <Hero />
-        </section>
-        <section id="about" className="snap-center snap-always">
-          <About />
-        </section>
-      </div>
-      <section id="products" className="snap-start snap-normal">
-        <Products products={data.products} loading={loading} />
-      </section>
+      {/*TODO: implement useQuery hook for better error handling */}
+      {!data && !loading ? (
+        <h1 className="absolute top-24 left-11 uppercase tracking-[3px]">
+          Uh oh! Something went wrong, please try again later
+        </h1>
+      ) : (
+        <>
+          <div id="sticky header container">
+            <Header />
+            <section id="hero" className="snap-start snap-always">
+              <Hero />
+            </section>
+            <section id="about" className="snap-center snap-always">
+              <About />
+            </section>
+          </div>
+          <section id="products" className="snap-start snap-normal">
+            <Products products={data.products} loading={loading} />
+          </section>
+        </>
+      )}
     </div>
   );
 }
@@ -40,7 +49,7 @@ export async function getStaticProps() {
     cache: new InMemoryCache(),
   });
 
-  const { data, error, loading } = await client.query({
+  const { data, loading } = await client.query({
     query: gql`
       query products {
         products(first: 40, channel: "uk") {
@@ -73,7 +82,6 @@ export async function getStaticProps() {
     `,
   });
 
-  console.log("error", error);
   return {
     props: { loading, data },
   };

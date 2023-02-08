@@ -1,3 +1,4 @@
+import { PRODUCT_LOGO } from "@/utils";
 import Link from "next/link";
 import React from "react";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
@@ -16,7 +17,7 @@ export default function Hero({}: Props) {
       <BackgroundCircles />
       <img
         className="relative rounded-full h-[300px] w-[300px] mx-auto"
-        src="images/logo.jpeg"
+        src={PRODUCT_LOGO}
         alt="rainbow flower"
       />
       <div className="z-20">

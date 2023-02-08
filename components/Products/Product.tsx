@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Node } from "@/schema";
+import { PRODUCT_LOGO } from "@/utils";
 
 type Props = {
   product: Node;
@@ -12,7 +13,7 @@ export default function Product({ product, handleClick }: Props) {
 
   const urlWithFallback = product.thumbnail?.url
     ? product.thumbnail.url
-    : "images/logo.jpeg";
+    : PRODUCT_LOGO;
 
   return (
     <button

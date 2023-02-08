@@ -1,15 +1,16 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Node } from "@/schema";
-import { descriptionFormater } from "@/utils";
+import { descriptionFormater, PRODUCT_LOGO } from "@/utils";
 
 type Props = {
   product: Node;
+  handleClick: () => void;
 };
 
-export default function ProductDard({ product }: Props) {
+export default function ProductDard({ product, handleClick }: Props) {
   const { description, name, pricing, thumbnail } = product;
-  const imageURL = thumbnail?.url || "images/logo.jpeg";
+  const imageURL = thumbnail?.url || PRODUCT_LOGO;
   const price = pricing.priceRange.stop.gross.amount;
   const formatedDesctiption = descriptionFormater(description);
 
@@ -34,6 +35,9 @@ export default function ProductDard({ product }: Props) {
           })}
         </ul>
       </div>
+      <button className="pb-1" onClick={() => handleClick()}>
+        Close
+      </button>
     </article>
   );
 }

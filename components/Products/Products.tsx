@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import Product from "./Product";
 import { Node, ProductsType } from "@/schema";
 import ProductDetailModal from "./ProductDetailModal";
-import isEmpty from "lodash/isEmpty";
 
 type Props = {
   products: ProductsType;
@@ -57,7 +56,7 @@ export default function Products({ products, loading }: Props) {
           </div>
         )}
       </div>
-      {showModal && !isEmpty(modalNode) ? (
+      {showModal ? (
         <ProductDetailModal
           handleClick={() => setShowModal(false)}
           product={modalNode as Node}

@@ -30,7 +30,9 @@ function ProductDetailModal({ handleClick, product }: Props) {
           >
             x
           </button>
-          {product && <ProductDard product={product} />}
+          {product && (
+            <ProductDard product={product} handleClick={() => handleClick()} />
+          )}
         </div>
       </motion.div>
     </div>
