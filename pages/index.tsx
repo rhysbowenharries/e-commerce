@@ -37,6 +37,8 @@ export default function Home({ loading, data }: Props) {
           <section id="products" className="snap-start snap-normal">
             <Products products={data.products} loading={loading} />
           </section>
+
+          {/* on Sale section, if I had more time */}
         </>
       )}
     </div>
