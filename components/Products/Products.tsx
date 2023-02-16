@@ -13,7 +13,6 @@ export default function Products({ products, loading }: Props) {
   const [showModal, setShowModal] = useState(false);
   const [modalNode, setModalNode] = useState({});
 
-  const fakeLoad = true;
   const nodes = products.edges.map(({ node }) => {
     return node;
   });
